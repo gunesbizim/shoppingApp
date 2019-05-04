@@ -43,6 +43,7 @@ namespace Shopping_Application
                 {
                     MessageBox.Show("You can not add same Property !");
                     this.Enabled = true;
+                    Console.WriteLine("Error " + a.Message);
                 }
                 
             }else

@@ -63,6 +63,7 @@ namespace Shopping_Application
                     aap.Location = new Point(200, 50);
                     this.Controls.Add(aap);
                     pageName.Text = "Add Product";
+                    Console.WriteLine("Error : " + ex.Message);
                 }
             }
             else

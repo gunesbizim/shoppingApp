@@ -19,8 +19,8 @@ namespace Shopping_Application
         public Panel panel1;
         public  int y=0;
         public  int x = 0;
-        Bitmap image;
         public  Dictionary<string, string> item;
+        Bitmap image;
         public string imageLocation;
         byte[] rawData;
         FileStream fs;

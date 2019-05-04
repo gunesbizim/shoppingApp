@@ -16,11 +16,6 @@ namespace Shopping_Application
         
         public user()
         {
-            this.eMail = eMail;
-            this.password = password;
-            this.uid = uid;
-            this.isAdmin = isAdmin;
-
         }
 
         public user(String email, String password,String uid,Boolean isAdmin)

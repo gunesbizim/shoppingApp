@@ -185,7 +185,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RichTextBox descriptionRTB;
-        private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.Button browseImage;
         private System.Windows.Forms.Button save;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;

@@ -14,9 +14,6 @@ namespace Shopping_Application
     public partial class adminSeeProduct : UserControl
     {
         public string imageLocation;
-        byte[] rawData;
-        FileStream fs;
-        UInt32 FileSize;
         Product p;
         DbConnection conn = new DbConnection();
         adminProduct ap;
