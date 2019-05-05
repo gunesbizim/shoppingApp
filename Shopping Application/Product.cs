@@ -19,13 +19,14 @@ namespace Shopping_Application
         string category;
         string hp;
         UInt32 imagesize;
+        int productCount;
         
         //Details will come as an dictionary from db you ll deserialize it bySetDetailsOneByOne
         //When you are comparing them to send db, add one by one by using textboxes ;)
         public List<string> a;
         public Product()
         {
-
+            productCount = 1;
         }
         public Product(string pid,string Name, string Details,Bitmap image,int price,string category,string hp,UInt32 imagesize)
         {
@@ -37,10 +38,15 @@ namespace Shopping_Application
             this.category = category;
             this.hp = hp;
             this.imagesize = imagesize;
+            productCount = 1;
         }
         public string getName()
         {
             return name;
+        }
+        public int getProductCount()
+        {
+            return productCount;
         }
         public string getDetails()
         {
@@ -116,6 +122,10 @@ namespace Shopping_Application
             MemoryStream ms = new MemoryStream(imageByte);
             Image image = Image.FromStream(ms);
             return image;
+        }
+        public void setProductCount(int productCount)
+        {
+            this.productCount = productCount;
         }
 
     }

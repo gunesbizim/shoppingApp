@@ -15,11 +15,10 @@ namespace Shopping_Application
 {
     public partial class adminAddProduct : UserControl
     {
-        
         public Panel panel1;
-        public  int y=0;
-        public  int x = 0;
-        public  Dictionary<string, string> item;
+        public int y = 0;
+        public int x = 0;
+        public Dictionary<string, string> item;
         Bitmap image;
         public string imageLocation;
         byte[] rawData;
@@ -31,7 +30,6 @@ namespace Shopping_Application
             updateCatCB();
             save.Enabled = false;
             createPanel();
-            
         }
         public void createPanel()
         {
@@ -42,18 +40,11 @@ namespace Shopping_Application
             panel1.Location = new Point(15, 190);
             panel1.Visible = true;
             panel1.Controls.Add(pd);
-
-           
             this.Controls.Add(panel1);
-            Console.WriteLine("TESTASDASD");
-            Console.WriteLine("TESTASDASD");
-            Console.WriteLine("TESTASDASD");
         }
 
         private void save_Click(object sender, EventArgs e)
         {
-
-            // https://www.dotnetperls.com/convert-dictionary-string
             string details = "";
             Regex r = new Regex(@"^[0-9]*$");
             string price = priceTB.Text;
@@ -73,16 +64,13 @@ namespace Shopping_Application
                 categoriesCB.SelectedIndex = -1;
                 this.Controls.Remove(panel1);
                 createPanel();
-                
-               
-
             }
             else
             {
                 MessageBox.Show("Please fill required blanks !");
             }
         }
-
+        // https://www.dotnetperls.com/convert-dictionary-string
         public string generateDictionaryString(Dictionary<string, string> item)
         {
             StringBuilder builder = new StringBuilder();
@@ -95,7 +83,8 @@ namespace Shopping_Application
             result = result.TrimEnd(',');
             return result;
         }
-        public Dictionary<string,string> deserializeString(string s)
+        // https://www.dotnetperls.com/convert-dictionary-string
+        public Dictionary<string, string> deserializeString(string s)
         {
             Dictionary<string, string> item = new Dictionary<string, string>();
             string[] tokens = s.Split(new char[] { ':', ',' },
@@ -104,16 +93,12 @@ namespace Shopping_Application
             for (int i = 0; i < tokens.Length; i += 2)
             {
                 string name = tokens[i];
-                string freq = tokens[i + 1];         
+                string freq = tokens[i + 1];
                 // Fill the value in the sorted dictionary
                 if (item.ContainsKey(name))
-                {
                     item[name] += freq;
-                }
                 else
-                {
                     item.Add(name, freq);
-                }
             }
             return item;
         }
@@ -130,7 +115,6 @@ namespace Shopping_Application
                 .ToList().ForEach(e => builder.Append(e));
             string id = builder.ToString();
             return id;
-
         }
 
         private void browseImage_Click(object sender, EventArgs e)
@@ -147,10 +131,10 @@ namespace Shopping_Application
                 pictureBox1.Image = new Bitmap(opd.FileName);
                 imageLocation = opd.FileName;
                 Console.WriteLine(imageLocation);
-                fs = new FileStream(imageLocation,FileMode.Open,FileAccess.Read);
+                fs = new FileStream(imageLocation, FileMode.Open, FileAccess.Read);
                 FileSize = (UInt32)fs.Length;
                 rawData = new byte[FileSize];
-                fs.Read(rawData,0,(int)FileSize);
+                fs.Read(rawData, 0, (int)FileSize);
                 fs.Close();
                 Product hp = new Product();
                 hp.setImage(hp.ByteArrayToImage(rawData));
@@ -171,13 +155,10 @@ namespace Shopping_Application
         public string isHP(bool Checked)
         {
             if (Checked)
-            {
                 return "True";
-            }else
-            {
+            else
                 return "False";
-            }
-             
+
         }
         public static Image ByteArrayToImagebyMemoryStream(byte[] imageByte)
         {
@@ -185,6 +166,5 @@ namespace Shopping_Application
             Image image = Image.FromStream(ms);
             return image;
         }
-
     }
 }

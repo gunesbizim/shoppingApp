@@ -115,6 +115,7 @@
             this.hp3_name.TabIndex = 3;
             this.hp3_name.TabStop = true;
             this.hp3_name.Text = "linkLabel1";
+            this.hp3_name.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.hp3_name_LinkClicked);
             // 
             // hp3_pb
             // 
@@ -154,6 +155,7 @@
             this.hp2_name.TabIndex = 2;
             this.hp2_name.TabStop = true;
             this.hp2_name.Text = "LINKLABEL1";
+            this.hp2_name.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.hp2_name_LinkClicked);
             // 
             // hp2_pb
             // 
@@ -193,6 +195,7 @@
             this.hp1_name.TabIndex = 1;
             this.hp1_name.TabStop = true;
             this.hp1_name.Text = "linkLabel1";
+            this.hp1_name.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.hp1_name_LinkClicked);
             // 
             // hp1_pb
             // 

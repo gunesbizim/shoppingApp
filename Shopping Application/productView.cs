@@ -31,6 +31,12 @@ namespace Shopping_Application
             MessageBox.Show("Product added to cart !");            
         }
 
-       
+        private void viewBT_Click(object sender, EventArgs e)
+        {
+            detailedProductView dpv = new detailedProductView(p,f1);
+            f1.disposeFunc(f1.getFirstChild());
+            dpv.Location = new Point();
+            f1.addToContainer(dpv);
+        }
     }
 }

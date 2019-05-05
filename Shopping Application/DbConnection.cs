@@ -116,7 +116,6 @@ namespace Shopping_Application
         public string insertUserCmd(string uid, string email, string pass, bool isAdmin)
         {
             string userDet = "INSERT INTO `users` (`uid`,`email`,`password`,`admin`) VALUES (" + "'" + uid + "'" + "," + "'" + email + "'" + "," + "'" + pass + "'" + "," + "'" + isAdmin + "'" + ");";
-
             return userDet;
         }
         public string[] getUserCmd(string email)
@@ -139,14 +138,11 @@ namespace Shopping_Application
                     test[2] = (dataReader["password"].ToString());
                     test[3] = (dataReader["admin"].ToString());
                 }
-
-
                 //close Data Reader
                 dataReader.Close();
                 //close Connection
                 this.CloseConnection();
                 //return list to be displayed
-
                 return test;
             }
             else
@@ -179,7 +175,6 @@ namespace Shopping_Application
                 {
                     return true;
                 }
-
             }
             else
             {
@@ -214,21 +209,17 @@ namespace Shopping_Application
                 {
                     Console.WriteLine("Query couldn't proccessed.");
                     return false;
-
                 }
-
             }
             catch (Exception e)
             {
                 Console.WriteLine("Error : " + e.Message);
                 return false;
             }
-
         }
         public string insertCategory(string category)
         {
             string categoryDet = "INSERT INTO `categories` (`categoryName`) VALUES (" + "'" + category + "'" + ");";
-
             return categoryDet;
         }
         public List<string> getCategories()
@@ -251,13 +242,11 @@ namespace Shopping_Application
             else
             {
                 return null;
-
             }
         }
         public string updateCategory(string categoryNameOld, string categoryNameNew)
         {
             string query = @"UPDATE categories SET categoryName='" + categoryNameNew + "' WHERE categoryName='" + categoryNameOld + "';";
-
             return query;
         }
         public List<Product> getHotProducts()
@@ -340,7 +329,6 @@ namespace Shopping_Application
                 this.CloseConnection();
             }
             return products;
-
         }
         public string deleteFromProducts(string pid)
         {
@@ -375,6 +363,7 @@ namespace Shopping_Application
             }
             return products;
         }
+
         public bool updateProduct(string pid, string name, string description, byte[] img, string price, string category, string hp, UInt32 imageSize)
         {
             string SQL = "UPDATE products SET pid=@pid, name=@name, description=@description, image=@image, price=@price, category=@category, hp=@hp, imagesize=@imagesize WHERE pid='" + pid + "';";
@@ -403,14 +392,115 @@ namespace Shopping_Application
                     Console.WriteLine("Query couldn't proccessed.");
                     return false;
                 }
-
             }
             catch (Exception e)
             {
                 Console.WriteLine("Error : " + e.Message);
                 return false;
             }
+        }
+        public List<AdressObj> getAdress(string pid)
+        {
+            string query = "SELECT pid,adress,aid FROM adress WHERE pid='" +pid +"';";
+            List<AdressObj> adress = new List<AdressObj>();
+            if (this.OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    AdressObj ao = new AdressObj();
+                    ao.setPid(dataReader["pid"].ToString());
+                    ao.setAdress(dataReader["adress"].ToString());
+                    ao.setAid(dataReader["aid"].ToString());
+                    adress.Add(ao);
+                }
+                this.CloseConnection();
+                return adress;
+            }else
+            {
+                Console.WriteLine("Unsuccessful connection !");
+                return adress;
+            }
+        }
+        public string insertAdress(string pid, string adress,string aid)
+        {
+            string query = @"INSERT INTO adress VALUES('"+pid + "','"+adress +"','"+aid +"');";
+            Console.WriteLine(query);
+            return query;
+        }
+        public string insertOrder(OrderObj o)
+        {
+            string query = @"INSERT INTO orders VALUES('" + o.getOid() + "','" + o.getUid() + "','" + o.getDetails() + "','" +o.getStatus()+ "');";
+            Console.WriteLine(query);
+            return query;
+        }
+        public List<OrderObj> getAllOrders()
+        {
+            List<OrderObj> orders = new List<OrderObj>();
+            string query = @"SELECT oid,uid,details,status FROM orders;";
+            
+            if (this.OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                //Create a data reader and Execute the command
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    OrderObj o = new OrderObj();
+                    o.setOid(dataReader["oid"].ToString());
+                    o.setUid(dataReader["uid"].ToString());
+                    o.setDetails(dataReader["details"].ToString());
+                    o.setStatus((int)dataReader["status"]);
+                    orders.Add(o);   
+                }
+                dataReader.Close();
+                this.CloseConnection();
+                return orders;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public string deleteOrder(string oid)
+        {
+            string query = "DELETE FROM orders WHERE oid='" + oid + "'";
+            return query;
+        }
+        public string updateOrders(string oid, int status)
+        {
+            string query = @"UPDATE orders SET status='" + status + "' WHERE oid='" + oid + "';";
 
+            return query;
+        }
+        public List<OrderObj> getUserOrders(string uid)
+        {
+            List<OrderObj> orders = new List<OrderObj>();
+            string query = @"SELECT oid,uid,details,status FROM orders WHERE uid='" + uid +"';";
+
+            if (this.OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                //Create a data reader and Execute the command
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    OrderObj o = new OrderObj();
+                    o.setOid(dataReader["oid"].ToString());
+                    o.setUid(dataReader["uid"].ToString());
+                    o.setDetails(dataReader["details"].ToString());
+                    o.setStatus((int)dataReader["status"]);
+                    orders.Add(o);
+                }
+                dataReader.Close();
+                this.CloseConnection();
+                return orders;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

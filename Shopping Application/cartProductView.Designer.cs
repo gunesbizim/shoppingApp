@@ -128,7 +128,6 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "cartProductView";
             this.Size = new System.Drawing.Size(795, 150);
-            this.MouseEnter += new System.EventHandler(this.cartProductView_MouseEnter);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);

@@ -24,7 +24,7 @@ namespace Shopping_Application
             int size = hpAll.Count;
             Random r = new Random();
             setCategories();
-            int i;
+            int i;       
             for (i = 0; i < 3; i++)
             {
                 choosenHp.Add(hpAll[r.Next(0, size)]);
@@ -32,9 +32,6 @@ namespace Shopping_Application
             setHotProducts(hp1_pb,hp1_name,hp1_details,choosenHp,0);
             setHotProducts(hp2_pb, hp2_name, hp2_details, choosenHp, 1);
             setHotProducts(hp3_pb, hp3_name, hp3_details, choosenHp, 2);
-            
-
-
         }
 
         private void setHotProducts(PictureBox pb, LinkLabel name, Label details,List<Product> lp, int i)
@@ -46,8 +43,6 @@ namespace Shopping_Application
             Dictionary<string, string> dictionary1 = aap.deserializeString(choosenHp[0].getDetails());
             aap.Dispose();
             details.Text = generateDictionaryString(dictionary1);
-            
-
         }
         public void setCategories()
         {
@@ -62,9 +57,7 @@ namespace Shopping_Application
                 categoriesGP.Controls.Add(cat);
                 y += 20;
             }
-
         }
-
         public string generateDictionaryString(Dictionary<string, string> item)
         {
             StringBuilder builder = new StringBuilder();
@@ -78,6 +71,28 @@ namespace Shopping_Application
             return result;
         }
 
+        private void hp1_name_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            detailedProductView dpv = new detailedProductView(choosenHp[0], f1);
+            f1.disposeFunc(f1.getFirstChild());
+            dpv.Location = new Point();
+            f1.addToContainer(dpv);
+        }
 
+        private void hp2_name_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            detailedProductView dpv = new detailedProductView(choosenHp[1], f1);
+            f1.disposeFunc(f1.getFirstChild());
+            dpv.Location = new Point();
+            f1.addToContainer(dpv);
+        }
+
+        private void hp3_name_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            detailedProductView dpv = new detailedProductView(choosenHp[2], f1);
+            f1.disposeFunc(f1.getFirstChild());
+            dpv.Location = new Point();
+            f1.addToContainer(dpv);
+        }
     }
 }

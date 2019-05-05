@@ -37,8 +37,7 @@ namespace Shopping_Application
                 .Take(12)
                 .ToList().ForEach(e => builder.Append(e));
             string id = builder.ToString();
-            return id;
-            
+            return id;  
         }
 
         public Boolean checkEmail(String email)

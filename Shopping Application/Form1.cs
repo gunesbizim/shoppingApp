@@ -13,13 +13,13 @@ namespace Shopping_Application
     public partial class Form1 : Form
     {
 
-        private Boolean logedIn = false;
+        public Boolean logedIn = false;
         private Boolean isAdmin = false;
         GroupBox container;
         public user u;
         public List<Product> cartList;
         MainPage mp;
-        private int totalPrice;
+        int totalPrice;
         public Form1()
         {
             InitializeComponent();
@@ -33,24 +33,6 @@ namespace Shopping_Application
             container.Controls.Add(mp);
             userMenuPref();
             cartList = new List<Product>();
-
-            
-            
-
-            //Test code area
-            //DbConnection conn = new DbConnection();
-           // List<Product> a = conn.getHotProducts();
-           // Product p = a[3];
-           // pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-           // pictureBox1.Image = p.getImage();
-            
-            //End of test code are
-          
-
-            
-            
-
-
 
         }
         // Function gets the first child of the group box and returns it. 
@@ -75,15 +57,11 @@ namespace Shopping_Application
             }catch(Exception e)
             {
                 Console.WriteLine("Error : " + e.Message);
-            }
-            
-
+            }          
         }
 
         private void appname_Click(object sender, EventArgs e)
-        {
-
-            
+        {       
             try
             {
                 if (this.getFirstChild().GetType().ToString() != mp.GetType().ToString())
@@ -92,16 +70,11 @@ namespace Shopping_Application
                     mp = new MainPage(this);
                     
                     container.Controls.Add(mp);
-                    Console.WriteLine("A");
                 }
             }
             catch (Exception a){
                 Console.WriteLine("Error : " + a.Message);
-            }
-            
-
-           
-            
+            }      
         }
      
         //If user log' s in sets boolean as true.
@@ -154,7 +127,7 @@ namespace Shopping_Application
                     else if (index == 1)
                     {
                         disposeFunc(getFirstChild());
-                        profilePage pp = new profilePage();
+                        profilePage pp = new profilePage(u);
                         container.Controls.Add(pp);
                     }
                     else
@@ -167,7 +140,7 @@ namespace Shopping_Application
                     if (index == 0)
                     {
                         disposeFunc(getFirstChild());
-                        profilePage pp = new profilePage();
+                        profilePage pp = new profilePage(u);
                         container.Controls.Add(pp);
                     }
                     else
@@ -183,11 +156,13 @@ namespace Shopping_Application
         {
             return container;
         }
+        public void addToContainer(UserControl u)
+        {
+            container.Controls.Add(u);
+        }
 
         private void Form1_VisibleChanged(object sender, EventArgs e)
         {
-
-           
             if (!(u.getEmail() == null))
             {
                 username_label.Text = u.getEmail();
@@ -227,13 +202,19 @@ namespace Shopping_Application
             cartList.Clear();
             cart_total_price_label.Text = "0";
             cart_item_count_label.Text = "0";
-
         }
         public void updateCartPreview(Product p)
         {
+
             totalPrice += p.getPrice();
             cart_total_price_label.Text = totalPrice.ToString();
-            cart_item_count_label.Text = cartList.Count.ToString();
+            int i;
+            int totalCount=0;
+            for (i = 0; i < cartList.Count; i++)
+            {
+                totalCount += cartList[i].getProductCount();
+            }
+            cart_item_count_label.Text = totalCount.ToString();
         }       
     }
 }

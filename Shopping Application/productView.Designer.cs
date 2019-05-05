@@ -61,6 +61,7 @@
             this.viewBT.TabIndex = 2;
             this.viewBT.Text = "View";
             this.viewBT.UseVisualStyleBackColor = true;
+            this.viewBT.Click += new System.EventHandler(this.viewBT_Click);
             // 
             // addCart
             // 

@@ -12,7 +12,6 @@ namespace Shopping_Application
 {
     public partial class adminPanel : UserControl
     {   
-        public Form1 f2;
         Boolean isNull = false;
         Categories cat;
         Orders ord;
@@ -148,10 +147,6 @@ namespace Shopping_Application
             {
                 Console.WriteLine("Error : " + e.Message);
             }
-            
-
         }
-
-
     }
 }

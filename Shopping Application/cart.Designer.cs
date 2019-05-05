@@ -32,6 +32,7 @@
             this.clear_cart = new System.Windows.Forms.Button();
             this.place_order = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.adressCB = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -62,6 +63,7 @@
             this.place_order.TabIndex = 3;
             this.place_order.Text = "Place Order";
             this.place_order.UseVisualStyleBackColor = true;
+            this.place_order.Click += new System.EventHandler(this.place_order_Click);
             // 
             // panel1
             // 
@@ -71,10 +73,20 @@
             this.panel1.Size = new System.Drawing.Size(1270, 526);
             this.panel1.TabIndex = 4;
             // 
+            // adressCB
+            // 
+            this.adressCB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.adressCB.FormattingEnabled = true;
+            this.adressCB.Location = new System.Drawing.Point(764, 574);
+            this.adressCB.Name = "adressCB";
+            this.adressCB.Size = new System.Drawing.Size(182, 28);
+            this.adressCB.TabIndex = 5;
+            // 
             // Cart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.adressCB);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.place_order);
             this.Controls.Add(this.clear_cart);
@@ -92,5 +104,6 @@
         private System.Windows.Forms.Button clear_cart;
         private System.Windows.Forms.Button place_order;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ComboBox adressCB;
     }
 }
